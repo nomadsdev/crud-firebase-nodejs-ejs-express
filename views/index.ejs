@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodejs Firebase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+  <div class="flex justify-center">
+    <div class="p-10">
+        <h1 class="text-2xl text-blue-600">Nodejs Firebase</h1>
+        <div class="bg-blue-600 w-5 h-1 rounded-full"></div>
+    </div>
+  </div>
+  
+  <div class="flex justify-center">
+    <div>
+        <h2 class="text-xl text-blue-600">Add Data</h2>
+        <form action="/add" method="POST" class="flex gap-2">
+            <input type="text" name="name" placeholder="Name" class="border border-blue-600 rounded-full px-2 text-blue-600">
+            <input type="text" name="email" placeholder="Email" class="border border-blue-600 rounded-full px-2 text-blue-600">
+            <button type="submit" class="text-white bg-blue-600 px-5 py-1 rounded-full text-xs">Add Data</button>
+        </form>
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <div>
+        <h2 class="text-blue-600 text-xl">Data List</h2>
+        <ul>
+            <% data.forEach(item => { %>
+            <li class="flex gap-2">
+                <strong>Name :</strong> <%= item.name %>, <strong>Email :</strong> <%= item.email %>
+                <form action="/edit/<%= item.id %>" method="POST">
+                <input type="text" name="name" value="<%= item.name %>">
+                <input type="text" name="email" value="<%= item.email %>">
+                <button type="submit" class="bg-yellow-500 text-white px-5 py-1 text-xs">Edit</button>
+                </form>
+                <a href="/delete/<%= item.id %>" class="bg-red-500 text-white px-5 py-1 rounded-full">Delete</a>
+            </li>
+            <% }) %>
+        </ul>
+    </div>
+  </div>
+</body>
+</html>
